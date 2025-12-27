@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#1a1a1a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Munchkin Level Tracker</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="player-row air" data-player="0">
+        <div class="tap-zone left" data-action="decrement"></div>
+        <div class="player-info">
+            <span class="player-name">AIR</span>
+            <span class="level">1</span>
+        </div>
+        <div class="tap-zone right" data-action="increment"></div>
+    </div>
+
+    <div class="player-row tara" data-player="1">
+        <div class="tap-zone left" data-action="decrement"></div>
+        <div class="player-info">
+            <span class="player-name">TARA</span>
+            <span class="level">1</span>
+        </div>
+        <div class="tap-zone right" data-action="increment"></div>
+    </div>
+
+    <div class="player-row ru" data-player="2">
+        <div class="tap-zone left" data-action="decrement"></div>
+        <div class="player-info">
+            <span class="player-name">RU</span>
+            <span class="level">1</span>
+        </div>
+        <div class="tap-zone right" data-action="increment"></div>
+    </div>
+
+    <div class="player-row fin" data-player="3">
+        <div class="tap-zone left" data-action="decrement"></div>
+        <div class="player-info">
+            <span class="player-name">FIN</span>
+            <span class="level">1</span>
+        </div>
+        <div class="tap-zone right" data-action="increment"></div>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('service-worker.js');
+        }
+    </script>
+</body>
+</html>
