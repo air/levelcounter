@@ -29,7 +29,7 @@ function init() {
 function incrementLevel(playerIndex) {
     if (players[playerIndex].level < MAX_LEVEL) {
         players[playerIndex].level++;
-        updateDisplay(playerIndex);
+        updateDisplay(playerIndex, true);
     }
 }
 
@@ -37,17 +37,37 @@ function incrementLevel(playerIndex) {
 function decrementLevel(playerIndex) {
     if (players[playerIndex].level > MIN_LEVEL) {
         players[playerIndex].level--;
-        updateDisplay(playerIndex);
+        updateDisplay(playerIndex, true);
     }
 }
 
 // Update the display for one or all players
-function updateDisplay(playerIndex = null) {
+function updateDisplay(playerIndex = null, animate = false) {
     if (playerIndex !== null) {
         // Update single player
         const row = document.querySelector(`.player-row[data-player="${playerIndex}"]`);
         const levelElement = row.querySelector('.level');
         levelElement.textContent = players[playerIndex].level;
+
+        // Add animation
+        if (animate) {
+            // Flash the row background
+            row.classList.add('tap-flash');
+            setTimeout(() => {
+                row.classList.remove('tap-flash');
+            }, 150);
+
+            // Bounce animation for level number
+            levelElement.classList.remove('increment-animation', 'decrement-animation');
+            // Force reflow to restart animation
+            void levelElement.offsetWidth;
+            levelElement.classList.add('increment-animation');
+
+            // Remove animation class after it completes
+            setTimeout(() => {
+                levelElement.classList.remove('increment-animation');
+            }, 400);
+        }
     } else {
         // Update all players
         players.forEach((player, index) => {
